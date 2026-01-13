@@ -27,3 +27,4 @@ You are a professional chef with extensive experience in creating balanced and d
 # Output
 
 The output must be a markdown table with the following columns: Day, Meal, Main Dish, Side Dish. Each row must correspond to a meal for a specific day. The table must have a header row.
+
