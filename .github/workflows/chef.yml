@@ -48,10 +48,12 @@ jobs:
           echo "Failed to create branch."
           exit 1
         fi
+        rm -f branch-creation-output.txt
 
     # Get weekly menu plan
     - name: Get weekly menu plan
       shell: bash
       run: |
         git status
-        copilot --model=${{ env.COPILOT_MODEL }} --agent=chef --prompt "Menu for this week, please"
+        copilot --model=${{ env.COPILOT_MODEL }} --agent=chef --prompt "Provide a new menu plan, please" >> $GITHUB_STEP_SUMMARY
+        ls -l
