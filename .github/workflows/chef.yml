@@ -20,13 +20,16 @@ jobs:
 
     # Environment variables
     env:
+      # Token for Copilot
       COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}  # GitHub Copilot token
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for GH CLI commands
+      # GitHub token for GH CLI commands. Using the default workflow token. 
+      # Additionally, permissions in settings/actions/Workflow permissions must be enabled to allow GH actions to create PRs.
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+      # Copilot model to use
       COPILOT_MODEL: gpt-4.1
 
     # Steps of the job
     steps:
-    
     # Checkout the repository
     - name: Checkout repository
       uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
@@ -41,6 +44,7 @@ jobs:
     - name: Install GitHub Copilot CLI
       run: npm i -g @github/copilot
 
+    # Setup Git config
     - name: Setup Git config
       run: |
         echo "Setting up git config"
@@ -59,7 +63,7 @@ jobs:
         fi
         rm -f branch-creation-output.txt
 
-    # Get weekly menu plan
+    # Get weekly menu plan and push changes to new feature branch if succeeded
     - name: Get weekly menu plan
       shell: bash
       run: |
@@ -76,6 +80,7 @@ jobs:
           exit 1
         fi
 
+    # Create Pull Request
     - name: Create Pull Request
       shell: bash
       run: |
