@@ -40,7 +40,7 @@ jobs:
 
     # Create feature branch
     - name: Run GitHub Copilot CLI - Create feature branch
-      run: copilot --model=gpt-4.1 --allow-tool "shell(git)" --prompt "Create a new feature branch with the syntax 'feature/menu-plan-YYYYMMDD-TS' where YYYYMMDD is today's date in year month day format and TS is the current timestamp in milliseconds."
+      run: copilot --model=gpt-4.1 --allow-all-tools --prompt "Create a new feature branch with the syntax 'feature/menu-plan-YYYYMMDD-TS' where YYYYMMDD is today's date in year month day format and TS is the current timestamp in milliseconds."
 
     # Run GH Copilot CLI - Get weekly menu plan
     # - name: Run GitHub Copilot CLI
