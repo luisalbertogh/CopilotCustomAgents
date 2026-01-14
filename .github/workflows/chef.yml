@@ -36,4 +36,4 @@ jobs:
 
     # Run GH Copilot CLI
     - name: Run GitHub Copilot CLI
-      run: copilot --model=gpt-4.1 --agent=chef-agent --prompt "Menu for this week, please"
+      run: copilot --model=gpt-4.1 --agent=chef --prompt "Menu for this week, please"

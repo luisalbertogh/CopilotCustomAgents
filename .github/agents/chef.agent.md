@@ -1,5 +1,5 @@
 ---
-name: chef-agent
+name: Chef Agent
 description: Expert cooker skilled in recipe creation, meal planning, and culinary techniques
 tools: ['web/fetch']
 ---
