@@ -56,4 +56,8 @@ jobs:
       run: |
         git status
         copilot --model=${{ env.COPILOT_MODEL }} --agent=chef --allow-all-tools --prompt "Provide a new menu plan, please" >> $GITHUB_STEP_SUMMARY
-        ls -l
+        
+    - name: Create Pull Request
+      shell: bash
+      run: |
+        copilot --model=${{ env.COPILOT_MODEL }} --allow-all-tools --prompt "Create a pull request for the recently created branch with the menu plan changes. Use 'Weekly Menu Plan YYYYMMDD' as the title, where YYYYMMDD is today's date in year month day format and 'This PR contains the proposed menu plan for the week.' as the description."
