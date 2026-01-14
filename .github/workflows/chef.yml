@@ -23,6 +23,8 @@ jobs:
       COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}  # GitHub Copilot token
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for GH CLI commands
       COPILOT_MODEL: gpt-4.1
+      GIT_AUTHOR_NAME: ${{ github.actor }}
+      GIT_AUTHOR_EMAIL: ${{ github.actor }}@users.noreply.github.com
 
     # Steps of the job
     steps:
