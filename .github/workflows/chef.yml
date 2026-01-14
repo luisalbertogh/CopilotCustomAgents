@@ -9,6 +9,7 @@ on:
 # Permissions for the workflow
 permissions:
   contents: write  # To create branches and commit changes
+  pull-requests: write  # To create pull requests
 
 # Workflow jobs
 jobs:
@@ -19,7 +20,8 @@ jobs:
 
     # Environment variables
     env:
-      COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}
+      COPILOT_GITHUB_TOKEN: ${{ secrets.COPILOT_GITHUB_TOKEN }}  # GitHub Copilot token
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for GH CLI commands
       COPILOT_MODEL: gpt-4.1
 
     # Steps of the job
