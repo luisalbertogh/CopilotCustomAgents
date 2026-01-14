@@ -41,8 +41,18 @@ jobs:
 
     # Create feature branch
     - name: Create feature branch
-      run: copilot --model=${{ env.COPILOT_MODEL }} --allow-tool "git" --prompt "Create a new feature branch with the syntax 'feature/menu-plan-YYYYMMDD-TS' where YYYYMMDD is today's date in year month day format and TS is the current timestamp in milliseconds."
+      shell: bash
+      run: |
+        # copilot --model=${{ env.COPILOT_MODEL }} --allow-all-tools --prompt "Create a new feature branch with the syntax 'feature/menu-plan-YYYYMMDD-TS' where YYYYMMDD is today's date in year month day format and TS is the current timestamp in milliseconds." >> branch-creation-output.txt
+        copilot --model=${{ env.COPILOT_MODEL }} --prompt "Create a new feature branch with the syntax 'feature/menu-plan-YYYYMMDD-TS' where YYYYMMDD is today's date in year month day format and TS is the current timestamp in milliseconds." >> branch-creation-output.txt
+        if grep -q "I was unable to create the branch" branch-creation-output.txt; then
+          echo "Failed to create branch."
+          exit 1
+        fi
 
     # Get weekly menu plan
     - name: Get weekly menu plan
-      run: copilot --model=${{ env.COPILOT_MODEL }} --agent=chef --prompt "Menu for this week, please"
+      shell: bash
+      run: |
+        git status
+        copilot --model=${{ env.COPILOT_MODEL }} --agent=chef --prompt "Menu for this week, please"
