@@ -1,0 +1,86 @@
+{
+	"servers": {
+		"context7": {
+			"type": "http",
+			"url": "https://mcp.context7.com/mcp",
+			"headers": {
+				"CONTEXT7_API_KEY": "xxxxxx"
+			}
+		},
+		"github": {
+			"type": "http",
+			"url": "https://api.githubcopilot.com/mcp/readonly",
+			"headers": {
+				"Authorization": "Bearer ${input:github_mcp_pat}"
+			}
+		},
+		"aws-knowledge-mcp-server": {
+			"type": "http",
+			"url": "https://knowledge-mcp.global.api.aws",
+			"disabled": false,
+			"timeout": 60
+		},
+		"awslabs.aws-documentation-mcp-server": {
+			"disabled": false,
+			"timeout": 60,
+			"type": "stdio",
+			"command": "uv",
+			"args": [
+				"tool",
+				"run",
+				"--from",
+				"awslabs.aws-documentation-mcp-server@latest",
+				"awslabs.aws-documentation-mcp-server.exe"
+			],
+			"env": {
+				"FASTMCP_LOG_LEVEL": "ERROR",
+				"AWS_DOCUMENTATION_PARTITION": "aws"
+			}
+		},
+		"awslabs.terraform-mcp-server": {
+			"disabled": false,
+			"timeout": 60,
+			"type": "stdio",
+			"command": "uv",
+			"args": [
+				"tool",
+				"run",
+				"--from",
+				"awslabs.terraform-mcp-server@latest",
+				"awslabs.terraform-mcp-server.exe"
+			],
+			"env": {
+				"FASTMCP_LOG_LEVEL": "ERROR",
+				"AWS_PROFILE": "default",
+				"AWS_REGION": "eu-central-1"
+			}
+		},
+		"awslabs.ccapi-mcp-server": {
+			"disabled": false,
+			"timeout": 60,
+			"type": "stdio",
+			"command": "uv",
+			"args": [
+				"tool",
+				"run",
+				"--from",
+				"awslabs.ccapi-mcp-server@latest",
+        		"awslabs.ccapi-mcp-server.exe",
+				"--readonly"
+			],
+			"env": {
+				"FASTMCP_LOG_LEVEL": "ERROR",
+				"AWS_REGION": "eu-central-1",
+				"AWS_PROFILE": "default"
+			}
+		}
+	},
+	"inputs": [
+		{
+			"type": "promptString",
+			"id": "github_mcp_pat",
+			"description": "GitHub Personal Access Token",
+			"password": true
+		}
+	]
+}
