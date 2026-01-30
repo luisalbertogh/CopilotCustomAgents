@@ -49,9 +49,68 @@ Apply these rules for the definition of `shapes`:
     ```
 
 - Use always a `label` as part of the shape definition.
-- Use `image` for the `shape` attribute if there is some image available under the [icons folder](assets/icons/). Browse the subfolders looking for the most propiate image. If none is found, ignore the attribute.
 
 Use the content of the web page in `https://d2lang.com/tour/shapes/` as a reference.
+
+#### Images in shapes
+
+Use an image for the shape only under the following circumstances:
+
+- Based on the item that will be represented with the shape, look into [this table](./references/image-ref.md) and check using the `name` column, if there is some image available for that item:
+
+  For example, for an `AWS Internet Gateway`, there is a row in the table with name equal to `internet_gw` pointing to an available image in `./assets/icons/aws/internet_gw.svg`
+
+  If there are multiple image formats for the same shape type, use `svg` over any other format.
+
+  Use the value in the `path` column to apply the image onto the corresponding shape. Do it as especified in the next bullet points.
+
+- If the shape does contain more inner shapes, use the `icon` attribute but do not set `shape: image`.
+
+  ```text
+  # For example
+  aws-region: {
+      label: AWS Region
+      icon: ./assets/icons/aws/aws_region.svg
+      style: {
+          font-size: 55
+      }
+
+      dagster-cluster: {
+          label: bay-cdp-aurora-cluster
+          icon: ./assets/icons/aws/ecs.svg
+          style: {
+              font-size: 45
+          }
+      ...
+      }
+  }
+  ```
+
+- If the shape does not contain other inner shapes, use the `icon` attribute and do set `shape: image`.
+
+  ```text
+  # For example
+  dagster-cluster: {
+      label: bay-cdp-aurora-cluster
+      icon: ./assets/icons/aws/ecs.svg
+      style: {
+          font-size: 45
+      }
+
+      dagster-agent: {
+          shape: image
+          icon: ./assets/icons/aws/ecs_service.svg
+          label: dagster-hybrid-agent
+          style: {
+              font-size: 25
+          }
+      }
+  }
+  ```
+
+- If no proper image is found, ignore the attribute `shape` and the attribute `icon` and do not use any `image` for that shape.
+
+**IMPORTANT** - The path to the `icon` attribute must start always with `./assets/icons/`.
 
 ### Connections
 
@@ -95,21 +154,21 @@ When defining `containers`, apply these rules:
     # Good example
     aws-region: {
         label: AWS Region
-        icon: ./icons/aws/aws_region.svg
+        icon: ./assets/icons/aws/aws_region.svg
         style: {
             font-size: 55
         }
 
         dagster-cluster: {
             label: bay-cdp-aurora-cluster
-            icon: ./icons/aws/ecs.svg
+            icon: ./assets/icons/aws/ecs.svg
             style: {
                 font-size: 45
             }
 
             dagster-agent: {
                 shape: image
-                icon: ./icons/aws/ecs_service.svg
+                icon: ./assets/icons/aws/ecs_service.svg
                 label: dagster-hybrid-agent
                 style: {
                     font-size: 25
@@ -307,5 +366,5 @@ When creating D2 diagrams:
 
 - Always follow the defined guidelines for shapes, connections, containers, variables, comments, and legends.
 - Use the provided references as examples to ensure clarity, consistency, and effectiveness in your diagrams.
-- Try to use the icons found under `assets/icons` and the corresponding subfolders when defining shapes.
+- Try to use the images found under `assets/icons` and the corresponding subfolders when defining shapes.
 - Ensure that diagrams are easy to understand and visually appealing.
