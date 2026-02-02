@@ -120,7 +120,7 @@ Use an image for the shape only under the following circumstances:
 
 Apply these rules for the definition of `connections`:
 
-- Use always directional connections (`->` or `<->` for bidirectionals).
+- Use always directional connections (`->`, `<-` or `<->` for bidirectionals).
 - Label the connections: `Read Replica 1 -- Read Replica 2: Kept in sync`.
 - If possible, try to group as many connections as possible in the same line:
 
@@ -141,6 +141,31 @@ Apply these rules for the definition of `connections`:
             font-size: 35
         }
     }
+    ```
+
+- When defining the *connection*, ensure the endpoint names for the connection are properly composed if the shapes are placed inside containers:
+
+    ```text
+    # Good composition
+    container: {
+        label: "Serverless File Processing Application"
+        icon: ../icons/aws/aws_icon.svg
+        style: {font-size: 55}
+
+        shape01: {
+            label: "S3 Event Trigger"
+            icon: ../icons/aws/s3_bucket.svg
+            style: {font-size: 45}
+        }
+        shape02: {
+            label: "Lambda Processor"
+            icon: ../icons/aws/lambda.svg
+            style: {font-size: 45}
+        }
+    }
+
+    # Connections
+    container.shape01 -> container.shape02: "Triggers" {style: {font-size: 35}}
     ```
 
 Use the content of the web page in `https://d2lang.com/tour/connections/` as a reference.
@@ -289,6 +314,13 @@ Use comments to explain complex parts of the diagram or to provide context:
 ```text
 # Comments start with a hash character and continue until the next newline or EOF.
 x -> y
+
+"""
+This is also a valid
+block comment
+"""
+
+// This is NOT a valid comment in D2 syntax
 ```
 
 Use the content of the web page in `https://d2lang.com/tour/comments/` as a reference.
