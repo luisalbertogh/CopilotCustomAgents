@@ -86,3 +86,5 @@ Under the `prompts` folder, the below custom prompts can be found:
 **MCP servers** are a very valuable tool that will enhance the performance and accuracy of the AI agents when used. Some of the previous agents will leverage MCP servers to retrieve additional information or more up-to-date and accurate details on the treated topics, like software libraries, official documentation, recommended practices, etc.
 
 For the MCP servers used with the custom agents defined in this repository, a reference to the corresponding setup can be found under the `mcp` folder. **This is done on a Windows environment using VS Code**. Nevertheless, it is recomended to inspect the official websites for those servers to get the latest update and a detailed explanation on how to configure them for the different environments.
+
+> **IMPORTANT** Ensure the MCP servers are running before prompting the agent if you want to use them!
