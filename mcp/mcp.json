@@ -73,6 +73,10 @@
 				"AWS_REGION": "eu-central-1",
 				"AWS_PROFILE": "default"
 			}
+		},
+		"microsoft-learn": {
+			"type": "http",
+			"url": "https://learn.microsoft.com/api/mcp"
 		}
 	},
 	"inputs": [
