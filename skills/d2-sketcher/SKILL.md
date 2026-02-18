@@ -26,6 +26,7 @@ The below prerequisites must be met before attempting the creation or update of 
 - Do not check for D2 binaries or installation. That is out of the scope of this skill.
 - Use the icons located under the `icons` folder. Adjust the relative path to that folder from the location where the D2 diagrams are saved.
 - Ensure to read the content under the `references` folder for further usage as indicated in this skill.
+- Do not use D2 syntax that is not valid for the used version. Print out the installed D2 version if needed by running the `d2 --version` command.
 
 ## Guidelines
 

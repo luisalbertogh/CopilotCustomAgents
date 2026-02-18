@@ -13,6 +13,8 @@ compatibility: Requires Microsoft Learn MCP Server (https://learn.microsoft.com/
 |------|---------|
 | `microsoft_docs_search` | Find documentation—concepts, guides, tutorials, configuration |
 | `microsoft_docs_fetch` | Get full page content (when search excerpts aren't enough) |
+| `azureterraformbestpractices` | Get Azure Terraform best practices |
+| `get_azure_bestpractices` | Get Azure best practices guidelines |
 
 ## When to Use
 
